@@ -1,0 +1,2 @@
+class TipoEvento < ApplicationRecord
+end
