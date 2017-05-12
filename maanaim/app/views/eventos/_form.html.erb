@@ -1,0 +1,15 @@
+<%= simple_form_for(@evento) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :qtdVagas %>
+    <%= f.input :dtInicio %>
+    <%= f.input :dtCadastro %>
+    <%= f.input :dtFim %>
+    <%= f.association :tipo %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

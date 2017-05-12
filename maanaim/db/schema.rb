@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512052119) do
+ActiveRecord::Schema.define(version: 20170512052701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20170512052119) do
     t.datetime "dtCadastro"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "eventos", force: :cascade do |t|
+    t.integer  "qtdVagas"
+    t.datetime "dtInicio"
+    t.datetime "dtCadastro"
+    t.datetime "dtFim"
+    t.integer  "tipo_eventos_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["tipo_eventos_id"], name: "index_eventos_on_tipo_eventos_id", using: :btree
   end
 
   create_table "pessoas", primary_key: "cpf", force: :cascade do |t|
@@ -61,4 +72,5 @@ ActiveRecord::Schema.define(version: 20170512052119) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "eventos", "tipo_eventos", column: "tipo_eventos_id"
 end

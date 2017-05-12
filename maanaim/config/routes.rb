@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :eventos
   resources :tipo_eventos
   resources :equipes
   resources :pessoas
