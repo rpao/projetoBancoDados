@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170430015050) do
+ActiveRecord::Schema.define(version: 20170512032731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pessoas", primary_key: "cpf", force: :cascade do |t|
+    t.string   "nome"
+    t.string   "sexo"
+    t.string   "logradouro"
+    t.decimal  "cep"
+    t.string   "bairro"
+    t.string   "email"
+    t.string   "telefone"
+    t.boolean  "ativo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
