@@ -17,7 +17,7 @@ class PessoasControllerTest < ActionDispatch::IntegrationTest
 
   test "should create pessoa" do
     assert_difference('Pessoa.count') do
-      post pessoas_url, params: { pessoa: { ativo: @pessoa.ativo, bairro: @pessoa.bairro, cep: @pessoa.cep, cpf: @pessoa.cpf, email: @pessoa.email, logradouro: @pessoa.logradouro, nome: @pessoa.nome, sexo: @pessoa.sexo, telefone: @pessoa.telefone } }
+      post pessoas_url, params: { pessoa: { ativo: @pessoa.ativo, bairro: @pessoa.bairro, cep: @pessoa.cep, cpf: @pessoa.cpf, dtNasc: @pessoa.dtNasc, email: @pessoa.email, logradouro: @pessoa.logradouro, nome: @pessoa.nome, sexo: @pessoa.sexo, telefone: @pessoa.telefone } }
     end
 
     assert_redirected_to pessoa_url(Pessoa.last)
@@ -34,7 +34,7 @@ class PessoasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update pessoa" do
-    patch pessoa_url(@pessoa), params: { pessoa: { ativo: @pessoa.ativo, bairro: @pessoa.bairro, cep: @pessoa.cep, cpf: @pessoa.cpf, email: @pessoa.email, logradouro: @pessoa.logradouro, nome: @pessoa.nome, sexo: @pessoa.sexo, telefone: @pessoa.telefone } }
+    patch pessoa_url(@pessoa), params: { pessoa: { ativo: @pessoa.ativo, bairro: @pessoa.bairro, cep: @pessoa.cep, cpf: @pessoa.cpf, dtNasc: @pessoa.dtNasc, email: @pessoa.email, logradouro: @pessoa.logradouro, nome: @pessoa.nome, sexo: @pessoa.sexo, telefone: @pessoa.telefone } }
     assert_redirected_to pessoa_url(@pessoa)
   end
 

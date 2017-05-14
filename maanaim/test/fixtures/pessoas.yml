@@ -1,22 +1,24 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  cpf: 
+  cpf: MyString
   nome: MyString
   sexo: MyString
+  dtNasc: 2017-05-14 05:15:19
   logradouro: MyString
-  cep: 
+  cep: MyString
   bairro: MyString
   email: MyString
   telefone: MyString
   ativo: false
 
 two:
-  cpf: 
+  cpf: MyString
   nome: MyString
   sexo: MyString
+  dtNasc: 2017-05-14 05:15:19
   logradouro: MyString
-  cep: 
+  cep: MyString
   bairro: MyString
   email: MyString
   telefone: MyString

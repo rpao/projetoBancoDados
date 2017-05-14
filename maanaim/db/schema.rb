@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512052701) do
+ActiveRecord::Schema.define(version: 20170514051519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,11 +34,12 @@ ActiveRecord::Schema.define(version: 20170512052701) do
     t.index ["tipo_eventos_id"], name: "index_eventos_on_tipo_eventos_id", using: :btree
   end
 
-  create_table "pessoas", primary_key: "cpf", force: :cascade do |t|
+  create_table "pessoas", primary_key: "cpf", id: :string, force: :cascade do |t|
     t.string   "nome"
     t.string   "sexo"
+    t.datetime "dtNasc"
     t.string   "logradouro"
-    t.decimal  "cep"
+    t.string   "cep"
     t.string   "bairro"
     t.string   "email"
     t.string   "telefone"
