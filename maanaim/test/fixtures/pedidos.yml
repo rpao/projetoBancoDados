@@ -2,8 +2,8 @@
 
 one:
   obs: MyString
-  funcionario: one
+  user: one
 
 two:
   obs: MyString
-  funcionario: two
+  user: two

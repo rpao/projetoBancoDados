@@ -1,3 +1,3 @@
 class Pedido < ApplicationRecord
-  belongs_to :funcionario
+  belongs_to :user
 end

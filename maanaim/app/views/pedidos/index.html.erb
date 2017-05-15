@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Obs</th>
-      <th>Funcionario</th>
+      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +15,7 @@
     <% @pedidos.each do |pedido| %>
       <tr>
         <td><%= pedido.obs %></td>
-        <td><%= pedido.funcionario %></td>
+        <td><%= pedido.user %></td>
         <td><%= link_to 'Show', pedido %></td>
         <td><%= link_to 'Edit', edit_pedido_path(pedido) %></td>
         <td><%= link_to 'Destroy', pedido, method: :delete, data: { confirm: 'Are you sure?' } %></td>
