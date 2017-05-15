@@ -17,7 +17,7 @@ class FazerPedidosControllerTest < ActionDispatch::IntegrationTest
 
   test "should create fazer_pedido" do
     assert_difference('FazerPedido.count') do
-      post fazer_pedidos_url, params: { fazer_pedido: { conta_id: @fazer_pedido.conta_id, evento_id: @fazer_pedido.evento_id, pedido_id: @fazer_pedido.pedido_id } }
+      post fazer_pedidos_url, params: { fazer_pedido: { account_id: @fazer_pedido.account_id, evento_id: @fazer_pedido.evento_id, pedido_id: @fazer_pedido.pedido_id } }
     end
 
     assert_redirected_to fazer_pedido_url(FazerPedido.last)
@@ -34,7 +34,7 @@ class FazerPedidosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update fazer_pedido" do
-    patch fazer_pedido_url(@fazer_pedido), params: { fazer_pedido: { conta_id: @fazer_pedido.conta_id, evento_id: @fazer_pedido.evento_id, pedido_id: @fazer_pedido.pedido_id } }
+    patch fazer_pedido_url(@fazer_pedido), params: { fazer_pedido: { account_id: @fazer_pedido.account_id, evento_id: @fazer_pedido.evento_id, pedido_id: @fazer_pedido.pedido_id } }
     assert_redirected_to fazer_pedido_url(@fazer_pedido)
   end
 

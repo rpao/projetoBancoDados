@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515020153) do
+ActiveRecord::Schema.define(version: 20170515023757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "conta", force: :cascade do |t|
+  create_table "accounts", force: :cascade do |t|
     t.decimal  "valor"
     t.string   "sitiacao"
     t.string   "pessoa_id"
@@ -44,10 +44,10 @@ ActiveRecord::Schema.define(version: 20170515020153) do
   create_table "fazer_pedidos", force: :cascade do |t|
     t.integer  "evento_id"
     t.integer  "pedido_id"
-    t.integer  "conta_id"
+    t.integer  "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["conta_id"], name: "index_fazer_pedidos_on_conta_id", using: :btree
+    t.index ["account_id"], name: "index_fazer_pedidos_on_account_id", using: :btree
     t.index ["evento_id"], name: "index_fazer_pedidos_on_evento_id", using: :btree
     t.index ["pedido_id"], name: "index_fazer_pedidos_on_pedido_id", using: :btree
   end
@@ -65,13 +65,13 @@ ActiveRecord::Schema.define(version: 20170515020153) do
 
   create_table "pagamentos", force: :cascade do |t|
     t.date     "data"
-    t.integer  "conta_id"
+    t.integer  "account_id"
     t.decimal  "valor"
     t.decimal  "desconto"
     t.string   "forma_de_pagamento"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.index ["conta_id"], name: "index_pagamentos_on_conta_id", using: :btree
+    t.index ["account_id"], name: "index_pagamentos_on_account_id", using: :btree
   end
 
   create_table "pedidos", force: :cascade do |t|
@@ -139,15 +139,15 @@ ActiveRecord::Schema.define(version: 20170515020153) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "conta", "pessoas", primary_key: "cpf"
+  add_foreign_key "accounts", "pessoas", primary_key: "cpf"
   add_foreign_key "eventos", "tipo_eventos"
-  add_foreign_key "fazer_pedidos", "conta", column: "conta_id"
+  add_foreign_key "fazer_pedidos", "accounts"
   add_foreign_key "fazer_pedidos", "eventos"
   add_foreign_key "fazer_pedidos", "pedidos"
   add_foreign_key "formacao_eventos", "equipes"
   add_foreign_key "formacao_eventos", "eventos"
   add_foreign_key "formacao_eventos", "pessoas", primary_key: "cpf"
-  add_foreign_key "pagamentos", "conta", column: "conta_id"
+  add_foreign_key "pagamentos", "accounts"
   add_foreign_key "pedidos", "users"
   add_foreign_key "produto_pedidos", "pedidos"
   add_foreign_key "produto_pedidos", "produtos"

@@ -3,9 +3,9 @@
 one:
   evento: one
   pedido: one
-  conta: one
+  account: one
 
 two:
   evento: two
   pedido: two
-  conta: two
+  account: two

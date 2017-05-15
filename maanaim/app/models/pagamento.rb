@@ -1,3 +1,3 @@
 class Pagamento < ApplicationRecord
-  belongs_to :conta
+  belongs_to :account
 end

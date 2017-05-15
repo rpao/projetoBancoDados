@@ -2,14 +2,14 @@
 
 one:
   data: 2017-05-15
-  conta: one
+  account: one
   valor: 
   desconto: 
   forma_de_pagamento: MyString
 
 two:
   data: 2017-05-15
-  conta: two
+  account: two
   valor: 
   desconto: 
   forma_de_pagamento: MyString

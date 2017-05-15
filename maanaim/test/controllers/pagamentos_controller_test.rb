@@ -17,7 +17,7 @@ class PagamentosControllerTest < ActionDispatch::IntegrationTest
 
   test "should create pagamento" do
     assert_difference('Pagamento.count') do
-      post pagamentos_url, params: { pagamento: { conta_id: @pagamento.conta_id, data: @pagamento.data, desconto: @pagamento.desconto, forma_de_pagamento: @pagamento.forma_de_pagamento, valor: @pagamento.valor } }
+      post pagamentos_url, params: { pagamento: { account_id: @pagamento.account_id, data: @pagamento.data, desconto: @pagamento.desconto, forma_de_pagamento: @pagamento.forma_de_pagamento, valor: @pagamento.valor } }
     end
 
     assert_redirected_to pagamento_url(Pagamento.last)
@@ -34,7 +34,7 @@ class PagamentosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update pagamento" do
-    patch pagamento_url(@pagamento), params: { pagamento: { conta_id: @pagamento.conta_id, data: @pagamento.data, desconto: @pagamento.desconto, forma_de_pagamento: @pagamento.forma_de_pagamento, valor: @pagamento.valor } }
+    patch pagamento_url(@pagamento), params: { pagamento: { account_id: @pagamento.account_id, data: @pagamento.data, desconto: @pagamento.desconto, forma_de_pagamento: @pagamento.forma_de_pagamento, valor: @pagamento.valor } }
     assert_redirected_to pagamento_url(@pagamento)
   end
 

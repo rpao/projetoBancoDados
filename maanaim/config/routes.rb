@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  resources :pedidos
   resources :pagamentos
   resources :fazer_pedidos
+  resources :accounts
+  resources :pedidos
   resources :produto_pedidos
   resources :produtos
   resources :formacao_eventos
   resources :eventos
-  resources :conta
   resources :pessoas
   resources :tipo_eventos
   resources :equipes

@@ -69,6 +69,6 @@ class FazerPedidosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fazer_pedido_params
-      params.require(:fazer_pedido).permit(:evento_id, :pedido_id, :conta_id)
+      params.require(:fazer_pedido).permit(:evento_id, :pedido_id, :account_id)
     end
 end
