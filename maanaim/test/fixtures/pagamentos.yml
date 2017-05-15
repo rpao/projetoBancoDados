@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data: 2017-05-15
+  conta: one
+  valor: 
+  desconto: 
+  forma_de_pagamento: MyString
+
+two:
+  data: 2017-05-15
+  conta: two
+  valor: 
+  desconto: 
+  forma_de_pagamento: MyString

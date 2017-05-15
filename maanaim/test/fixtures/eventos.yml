@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quantidade_de_vagas: 1
+  data_de_inicio: 2017-05-15
+  data_de_fim: 2017-05-15
+  tipo_evento: one
+
+two:
+  quantidade_de_vagas: 1
+  data_de_inicio: 2017-05-15
+  data_de_fim: 2017-05-15
+  tipo_evento: two

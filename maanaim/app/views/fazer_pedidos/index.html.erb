@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fazer Pedidos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Evento</th>
+      <th>Pedido</th>
+      <th>Conta</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fazer_pedidos.each do |fazer_pedido| %>
+      <tr>
+        <td><%= fazer_pedido.evento %></td>
+        <td><%= fazer_pedido.pedido %></td>
+        <td><%= fazer_pedido.conta %></td>
+        <td><%= link_to 'Show', fazer_pedido %></td>
+        <td><%= link_to 'Edit', edit_fazer_pedido_path(fazer_pedido) %></td>
+        <td><%= link_to 'Destroy', fazer_pedido, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fazer Pedido', new_fazer_pedido_path %>

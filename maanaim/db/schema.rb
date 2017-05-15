@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170514051519) do
+ActiveRecord::Schema.define(version: 20170515020153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conta", force: :cascade do |t|
+    t.decimal  "valor"
+    t.string   "sitiacao"
+    t.string   "pessoa_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "equipes", force: :cascade do |t|
     t.string   "nome"
@@ -21,6 +29,57 @@ ActiveRecord::Schema.define(version: 20170514051519) do
     t.datetime "dtCadastro"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "eventos", force: :cascade do |t|
+    t.integer  "quantidade_de_vagas"
+    t.date     "data_de_inicio"
+    t.date     "data_de_fim"
+    t.integer  "tipo_evento_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["tipo_evento_id"], name: "index_eventos_on_tipo_evento_id", using: :btree
+  end
+
+  create_table "fazer_pedidos", force: :cascade do |t|
+    t.integer  "evento_id"
+    t.integer  "pedido_id"
+    t.integer  "conta_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conta_id"], name: "index_fazer_pedidos_on_conta_id", using: :btree
+    t.index ["evento_id"], name: "index_fazer_pedidos_on_evento_id", using: :btree
+    t.index ["pedido_id"], name: "index_fazer_pedidos_on_pedido_id", using: :btree
+  end
+
+  create_table "formacao_eventos", force: :cascade do |t|
+    t.string   "pessoa_id"
+    t.date     "data"
+    t.integer  "equipe_id"
+    t.integer  "evento_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipe_id"], name: "index_formacao_eventos_on_equipe_id", using: :btree
+    t.index ["evento_id"], name: "index_formacao_eventos_on_evento_id", using: :btree
+  end
+
+  create_table "pagamentos", force: :cascade do |t|
+    t.date     "data"
+    t.integer  "conta_id"
+    t.decimal  "valor"
+    t.decimal  "desconto"
+    t.string   "forma_de_pagamento"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["conta_id"], name: "index_pagamentos_on_conta_id", using: :btree
+  end
+
+  create_table "pedidos", force: :cascade do |t|
+    t.string   "obs"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_pedidos_on_user_id", using: :btree
   end
 
   create_table "pessoas", primary_key: "cpf", id: :string, force: :cascade do |t|
@@ -33,6 +92,24 @@ ActiveRecord::Schema.define(version: 20170514051519) do
     t.string   "email"
     t.string   "telefone"
     t.boolean  "ativo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "produto_pedidos", force: :cascade do |t|
+    t.integer  "pedido_id"
+    t.integer  "produto_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pedido_id"], name: "index_produto_pedidos_on_pedido_id", using: :btree
+    t.index ["produto_id"], name: "index_produto_pedidos_on_produto_id", using: :btree
+  end
+
+  create_table "produtos", force: :cascade do |t|
+    t.string   "nome"
+    t.decimal  "preco"
+    t.integer  "ativo"
+    t.string   "obs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -62,4 +139,16 @@ ActiveRecord::Schema.define(version: 20170514051519) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "conta", "pessoas", primary_key: "cpf"
+  add_foreign_key "eventos", "tipo_eventos"
+  add_foreign_key "fazer_pedidos", "conta", column: "conta_id"
+  add_foreign_key "fazer_pedidos", "eventos"
+  add_foreign_key "fazer_pedidos", "pedidos"
+  add_foreign_key "formacao_eventos", "equipes"
+  add_foreign_key "formacao_eventos", "eventos"
+  add_foreign_key "formacao_eventos", "pessoas", primary_key: "cpf"
+  add_foreign_key "pagamentos", "conta", column: "conta_id"
+  add_foreign_key "pedidos", "users"
+  add_foreign_key "produto_pedidos", "pedidos"
+  add_foreign_key "produto_pedidos", "produtos"
 end

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Evento:</strong>
+  <%= @fazer_pedido.evento %>
+</p>
+
+<p>
+  <strong>Pedido:</strong>
+  <%= @fazer_pedido.pedido %>
+</p>
+
+<p>
+  <strong>Conta:</strong>
+  <%= @fazer_pedido.conta %>
+</p>
+
+<%= link_to 'Edit', edit_fazer_pedido_path(@fazer_pedido) %> |
+<%= link_to 'Back', fazer_pedidos_path %>

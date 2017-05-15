@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pessoa:</strong>
+  <%= @formacao_evento.pessoa %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @formacao_evento.data %>
+</p>
+
+<p>
+  <strong>Equipe:</strong>
+  <%= @formacao_evento.equipe %>
+</p>
+
+<p>
+  <strong>Evento:</strong>
+  <%= @formacao_evento.evento %>
+</p>
+
+<%= link_to 'Edit', edit_formacao_evento_path(@formacao_evento) %> |
+<%= link_to 'Back', formacao_eventos_path %>
