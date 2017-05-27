@@ -1,6 +1,6 @@
 class PagamentosController < ApplicationController
   before_action :set_pagamento, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /pagamentos
   # GET /pagamentos.json
   def index

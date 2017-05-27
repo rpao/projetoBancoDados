@@ -1,6 +1,6 @@
 class TipoEventosController < ApplicationController
   before_action :set_tipo_evento, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /tipo_eventos
   # GET /tipo_eventos.json
   def index

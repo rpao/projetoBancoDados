@@ -1,45 +1,89 @@
-<p id="notice"><%= notice %></p>
+<% content_for :titulo do %>Gerenciamento<% end %>
 
-<h1>Pessoas</h1>
+<%= nav_gerencia.html_safe %>
+<div class="py-5">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="col-md-12">
+            <form class="form-inline">
+              <div class="form-group"> <input type="" class="form-control" placeholder="Marcio"> </div> <button type="submit" class="btn btn-primary">Pesquisar</button> </form>
+          </div>
+        </div>
+        <div class="col-md-2 "><a href="<%= new_pessoa_path %>" class="btn btn-primary">Novo Cadastro</a></div>
+        <div class="col-md-6 "><a href="#" class="btn btn-primary">Opções da Tabela</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12  ">
 
-<table>
-  <thead>
-    <tr>
-      <th>Cpf</th>
-      <th>Nome</th>
-      <th>Sexo</th>
-      <th>Dtnasc</th>
-      <th>Logradouro</th>
-      <th>Cep</th>
-      <th>Bairro</th>
-      <th>Email</th>
-      <th>Telefone</th>
-      <th>Ativo</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Cpf</th>
+            <th>Nome</th>
+            <th>Sexo</th>
+            <th>Dtnasc</th>
+            <th>Logradouro</th>
+            <th>Cep</th>
+            <th>Bairro</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Ativo</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% @pessoas.each do |pessoa| %>
+            <tr>
+              <td><%= pessoa.cpf %></td>
+              <td><%= pessoa.nome %></td>
+              <td><%= pessoa.sexo %></td>
+              <td><%= pessoa.dtNasc %></td>
+              <td><%= pessoa.logradouro %></td>
+              <td><%= pessoa.cep %></td>
+              <td><%= pessoa.bairro %></td>
+              <td><%= pessoa.email %></td>
+              <td><%= pessoa.telefone %></td>
+              <td><%= pessoa.ativo %></td>
+              <td><%= link_to 'Show', pessoa %></td>
+              <td><%= link_to 'Edit', edit_pessoa_path(pessoa) %></td>
+              <td><%= link_to 'Destroy', pessoa, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-  <tbody>
-    <% @pessoas.each do |pessoa| %>
-      <tr>
-        <td><%= pessoa.cpf %></td>
-        <td><%= pessoa.nome %></td>
-        <td><%= pessoa.sexo %></td>
-        <td><%= pessoa.dtNasc %></td>
-        <td><%= pessoa.logradouro %></td>
-        <td><%= pessoa.cep %></td>
-        <td><%= pessoa.bairro %></td>
-        <td><%= pessoa.email %></td>
-        <td><%= pessoa.telefone %></td>
-        <td><%= pessoa.ativo %></td>
-        <td><%= link_to 'Show', pessoa %></td>
-        <td><%= link_to 'Edit', edit_pessoa_path(pessoa) %></td>
-        <td><%= link_to 'Destroy', pessoa, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">«</span> <span class="sr-only">Previous</span> </a>
+        </li>
+        <li class="page-item"> <a class="page-link" href="#">1</a> </li>
+        <li class="page-item"> <a class="page-link" href="#">2</a> </li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">»</span> <span class="sr-only">Next</span> </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
 
-<br>
-
-<%= link_to 'New Pessoa', new_pessoa_path %>
+<div class="py-5">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <hr class=""> </div>
+  </div>
+</div>
+</div>

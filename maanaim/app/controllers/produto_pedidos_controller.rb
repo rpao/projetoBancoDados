@@ -1,6 +1,6 @@
 class ProdutoPedidosController < ApplicationController
   before_action :set_produto_pedido, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /produto_pedidos
   # GET /produto_pedidos.json
   def index

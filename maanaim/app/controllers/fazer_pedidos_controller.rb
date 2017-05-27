@@ -1,6 +1,6 @@
 class FazerPedidosController < ApplicationController
   before_action :set_fazer_pedido, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /fazer_pedidos
   # GET /fazer_pedidos.json
   def index

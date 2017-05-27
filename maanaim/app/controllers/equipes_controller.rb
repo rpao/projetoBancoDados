@@ -1,6 +1,6 @@
 class EquipesController < ApplicationController
   before_action :set_equipe, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /equipes
   # GET /equipes.json
   def index

@@ -13,21 +13,15 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-faded">
-    <div class="container"> <a class="navbar-brand text-primary" href="#">Gerenciamento</a> <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-               </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        <ul class="navbar-nav ">
-          <li class="nav-item active"> <a class="nav-link text-primary" href="#">(logado como josé)</a> </li>
-          <li class="nav-item active"> <a class="nav-link" href="#">Início</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="#">Ajuda</a> </li>
-          <li class="nav-item"> <a class="nav-link disabled" href="#">Sair</a> </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    
+    <!-- navbar -->
+    <% if user_signed_in? %>
+      <%= render 'layouts/nav_logado' %>
+    <% else %>
+      <%= render 'layouts/nav_nao_logado' %>
+    <% end %>
+    <!-- end navbar -->
+    
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
@@ -39,7 +33,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="row">
-                <div class="col-md-4"><img class="center-block img-fluid d-block" src="C:\Users\eduardotrin\output\manaaim-branco.png"></div>
+                <div class="col-md-4"><img class="center-block img-fluid d-block" src="<%= image_path "maanain-02.png"%>"></div>
                 <div class="col-md-4"><i class="fa fa-fw fa-facebook text-white fa-3x"></i></div>
                 <div class="col-md-4">
                   <ul class="list-inline text-white">(00) 1234-5678<br>asdasa@mail.com</ul>

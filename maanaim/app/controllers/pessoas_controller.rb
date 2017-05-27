@@ -1,6 +1,6 @@
 class PessoasController < ApplicationController
   before_action :set_pessoa, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /pessoas
   # GET /pessoas.json
   def index

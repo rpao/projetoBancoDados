@@ -1,6 +1,6 @@
 class FormacaoEventosController < ApplicationController
   before_action :set_formacao_evento, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /formacao_eventos
   # GET /formacao_eventos.json
   def index

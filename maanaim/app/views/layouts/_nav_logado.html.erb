@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-md navbar-light bg-faded">
+    <div class="container"> <a class="navbar-brand text-primary" href="#"><%= yield :titulo %></a> <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+               </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav ">
+          <li class="nav-item active"> <a class="nav-link text-primary" href="<%= edit_user_registration_path %>">(logado como <%= current_user.email %>)</a> </li>
+          <li class="nav-item active"> <a class="nav-link" href="<%= root_path %>">Início</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="<%= paginas_ajuda_path %>">Ajuda</a> </li>
+          <li class="nav-item"> <a class="nav-link" data-method="delete" href="<%= destroy_user_session_path %>">Sair</a> </li>
+        </ul>
+      </div>
+    </div>
+</nav>
