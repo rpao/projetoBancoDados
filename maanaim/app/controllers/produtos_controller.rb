@@ -1,10 +1,12 @@
 class ProdutosController < ApplicationController
   before_action :set_produto, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  helper_method :sort_column, :sort_direction
+  
   # GET /produtos
   # GET /produtos.json
   def index
-    @produtos = Produto.all
+    @produtos = Produto.order(sort_column + " " + sort_direction).search(params[:search]).paginate(:per_page => 5, :page => params[:page])
   end
 
   # GET /produtos/1
@@ -70,5 +72,13 @@ class ProdutosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def produto_params
       params.require(:produto).permit(:nome, :preco, :ativo, :obs)
+    end
+    
+    def sort_column
+      Produto.column_names.include?(params[:sort]) ? params[:sort] : "1"
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

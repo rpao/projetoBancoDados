@@ -1,10 +1,11 @@
 class PessoasController < ApplicationController
   before_action :set_pessoa, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  helper_method :sort_column, :sort_direction
   # GET /pessoas
   # GET /pessoas.json
   def index
-    @pessoas = Pessoa.all
+    @pessoas = Pessoa.order(sort_column + " " + sort_direction).search(params[:search]).paginate(:per_page => 5, :page => params[:page])
   end
 
   # GET /pessoas/1
@@ -70,5 +71,13 @@ class PessoasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def pessoa_params
       params.require(:pessoa).permit(:cpf, :nome, :sexo, :dtNasc, :logradouro, :cep, :bairro, :email, :telefone, :ativo)
+    end
+    
+    def sort_column
+      Pessoa.column_names.include?(params[:sort]) ? params[:sort] : "1"
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

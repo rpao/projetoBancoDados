@@ -1,10 +1,12 @@
 class EventosController < ApplicationController
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  helper_method :sort_column, :sort_direction
+  
   # GET /eventos
   # GET /eventos.json
   def index
-    @eventos = Evento.all
+    @eventos = Evento.order(sort_column + " " + sort_direction).search(params[:search]).paginate(:per_page => 5, :page => params[:page])
   end
 
   # GET /eventos/1
@@ -70,5 +72,14 @@ class EventosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def evento_params
       params.require(:evento).permit(:quantidade_de_vagas, :data_de_inicio, :data_de_fim, :tipo_evento_id)
+      
+    end
+    
+    def sort_column
+      Evento.column_names.include?(params[:sort]) ? params[:sort] : "1"
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

@@ -1,10 +1,12 @@
 class EquipesController < ApplicationController
   before_action :set_equipe, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  helper_method :sort_column, :sort_direction
+  
   # GET /equipes
   # GET /equipes.json
   def index
-    @equipes = Equipe.all
+    @equipes = Equipe.order(sort_column + " " + sort_direction).search(params[:search]).paginate(:per_page => 5, :page => params[:page])
   end
 
   # GET /equipes/1
@@ -70,5 +72,13 @@ class EquipesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def equipe_params
       params.require(:equipe).permit(:nome, :tipo, :dtCadastro)
+    end
+    
+    def sort_column
+      Equipe.column_names.include?(params[:sort]) ? params[:sort] : "1"
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

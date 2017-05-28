@@ -36,6 +36,8 @@ gem 'devise', '~>4.2.0'
 gem 'simple_form', '~>3.4.0'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 
+gem 'bootstrap-will_paginate'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
