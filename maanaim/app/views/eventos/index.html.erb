@@ -1,10 +1,11 @@
 <table class="table">
 <thead>
   <tr>
-    <th><%= sortable "quantidade_de_vagas", "Quantidade de vagas" %></th>
-    <th>Data de inicio</th>
-    <th>Data de fim</th>
-    <th>Tipo evento</th>
+    <th><%= sortable "nome" %></th>
+    <th><%= sortable "quantidade_de_vagas" %></th>
+    <th><%= sortable "data_de_inicio" %></th>
+    <th><%= sortable "data_de_fim" %></th>
+    <th><%= sortable "tipo_evento" %></th>
     <th colspan="2"></th>
   </tr>
 </thead>
@@ -12,12 +13,13 @@
 <tbody>
   <% @eventos.each do |evento| %>
     <tr>
+      <td><%= evento.nome %></td>
       <td><%= evento.quantidade_de_vagas %></td>
       <td><%= evento.data_de_inicio %></td>
       <td><%= evento.data_de_fim %></td>
       <td><%= evento.tipo_evento.nome %></td>
-      <td><%= link_to 'Edit', edit_evento_path(evento), remote: true %></td>
-      <td><%= link_to 'Destroy', evento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Editar', edit_evento_path(evento), remote: true %></td>
+      <td><%= link_to 'Apagar', evento, method: :delete, data: { confirm: 'Os dados serão excluídos permanentemente, deseja continuar?' } %></td>
     </tr>
   <% end %>
 </tbody>

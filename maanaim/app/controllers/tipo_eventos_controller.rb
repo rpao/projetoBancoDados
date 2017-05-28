@@ -1,24 +1,11 @@
-class TipoEventosController < ApplicationController
+class TipoEventosController < OrdenavelController
   before_action :set_tipo_evento, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  # GET /tipo_eventos
-  # GET /tipo_eventos.json
-  def index
-    @tipo_eventos = TipoEvento.all
-  end
+  
 
   # GET /tipo_eventos/1
   # GET /tipo_eventos/1.json
   def show
-  end
-
-  # GET /tipo_eventos/new
-  def new
-    @tipo_evento = TipoEvento.new
-  end
-
-  # GET /tipo_eventos/1/edit
-  def edit
   end
 
   # POST /tipo_eventos
@@ -28,7 +15,7 @@ class TipoEventosController < ApplicationController
 
     respond_to do |format|
       if @tipo_evento.save
-        format.html { redirect_to @tipo_evento, notice: 'Tipo evento was successfully created.' }
+        format.html { redirect_to :eventos, notice: 'Tipo evento was successfully created.' }
         format.json { render :show, status: :created, location: @tipo_evento }
       else
         format.html { render :new }
@@ -42,7 +29,7 @@ class TipoEventosController < ApplicationController
   def update
     respond_to do |format|
       if @tipo_evento.update(tipo_evento_params)
-        format.html { redirect_to @tipo_evento, notice: 'Tipo evento was successfully updated.' }
+        format.html { redirect_to :eventos, notice: 'Tipo evento was successfully updated.' }
         format.json { render :show, status: :ok, location: @tipo_evento }
       else
         format.html { render :edit }

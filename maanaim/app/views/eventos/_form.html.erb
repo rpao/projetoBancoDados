@@ -2,9 +2,10 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :nome %>
     <%= f.input :quantidade_de_vagas %>
-    <%= f.input :data_de_inicio %>
-    <%= f.input :data_de_fim %>
+    <%= f.input :data_de_inicio, as: :string, input_html: { type: 'date'} %>
+    <%= f.input :data_de_fim, as: :string, input_html: { type: 'date'} %>
     <%= f.association :tipo_evento, label_method: :nome %>
   </div>
 

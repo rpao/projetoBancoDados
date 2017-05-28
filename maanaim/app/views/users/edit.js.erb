@@ -1,0 +1,4 @@
+value =  "<%= escape_javascript (render 'templates/modal', titulo: 'Editar '+controller_name.humanize, form: (render 'form2')) %>"
+$("#modal-form").html(value);
+
+$('#myModal').modal('show')

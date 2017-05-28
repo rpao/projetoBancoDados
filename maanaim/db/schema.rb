@@ -18,9 +18,10 @@ ActiveRecord::Schema.define(version: 20170515023757) do
   create_table "accounts", force: :cascade do |t|
     t.decimal  "valor"
     t.string   "sitiacao"
-    t.string   "pessoa_id"
+    t.integer  "pessoa_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["pessoa_id"], name: "index_accounts_on_pessoa_id", using: :btree
   end
 
   create_table "equipes", force: :cascade do |t|
@@ -54,14 +55,15 @@ ActiveRecord::Schema.define(version: 20170515023757) do
   end
 
   create_table "formacao_eventos", force: :cascade do |t|
-    t.string   "pessoa_id"
     t.date     "data"
     t.integer  "equipe_id"
     t.integer  "evento_id"
+    t.integer  "pessoa_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["equipe_id"], name: "index_formacao_eventos_on_equipe_id", using: :btree
     t.index ["evento_id"], name: "index_formacao_eventos_on_evento_id", using: :btree
+    t.index ["pessoa_id"], name: "index_formacao_eventos_on_pessoa_id", using: :btree
   end
 
   create_table "pagamentos", force: :cascade do |t|
@@ -77,13 +79,14 @@ ActiveRecord::Schema.define(version: 20170515023757) do
 
   create_table "pedidos", force: :cascade do |t|
     t.string   "obs"
-    t.integer  "user_id"
+    t.integer  "pessoa_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_pedidos_on_user_id", using: :btree
+    t.index ["pessoa_id"], name: "index_pedidos_on_pessoa_id", using: :btree
   end
 
-  create_table "pessoas", primary_key: "cpf", id: :string, force: :cascade do |t|
+  create_table "pessoas", force: :cascade do |t|
+    t.string   "cpf"
     t.string   "nome"
     t.string   "sexo"
     t.datetime "dtNasc"
@@ -109,7 +112,7 @@ ActiveRecord::Schema.define(version: 20170515023757) do
   create_table "produtos", force: :cascade do |t|
     t.string   "nome"
     t.decimal  "preco"
-    t.integer  "ativo"
+    t.boolean  "ativo"
     t.string   "obs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -134,22 +137,25 @@ ActiveRecord::Schema.define(version: 20170515023757) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.integer  "pessoa_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["pessoa_id"], name: "index_users_on_pessoa_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "accounts", "pessoas", primary_key: "cpf"
+  add_foreign_key "accounts", "pessoas"
   add_foreign_key "eventos", "tipo_eventos"
   add_foreign_key "fazer_pedidos", "accounts"
   add_foreign_key "fazer_pedidos", "eventos"
   add_foreign_key "fazer_pedidos", "pedidos"
   add_foreign_key "formacao_eventos", "equipes"
   add_foreign_key "formacao_eventos", "eventos"
-  add_foreign_key "formacao_eventos", "pessoas", primary_key: "cpf"
+  add_foreign_key "formacao_eventos", "pessoas"
   add_foreign_key "pagamentos", "accounts"
-  add_foreign_key "pedidos", "users"
+  add_foreign_key "pedidos", "pessoas"
   add_foreign_key "produto_pedidos", "pedidos"
   add_foreign_key "produto_pedidos", "produtos"
+  add_foreign_key "users", "pessoas"
 end

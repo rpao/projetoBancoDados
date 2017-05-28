@@ -1,7 +1,7 @@
 class CreatePessoas < ActiveRecord::Migration[5.0]
   def change
-    create_table :pessoas, id: false do |t|
-      t.string :cpf, primary_key: true
+    create_table :pessoas do |t|
+      t.string :cpf, unique: true
       t.string :nome
       t.string :sexo
       t.datetime :dtNasc

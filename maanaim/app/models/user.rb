@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
+  belongs_to :pessoa
   def self.search(search)
     if search
       where('email LIKE ?', "%#{search}%")

@@ -1,8 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Tipo Eventos</h1>
-
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Nome</th>
@@ -18,14 +14,9 @@
         <td><%= tipo_evento.nome %></td>
         <td><%= tipo_evento.ativo %></td>
         <td><%= tipo_evento.dtCadastro %></td>
-        <td><%= link_to 'Show', tipo_evento %></td>
-        <td><%= link_to 'Edit', edit_tipo_evento_path(tipo_evento) %></td>
+        <td><%= link_to 'Edit', edit_tipo_evento_path(tipo_evento), remote: true %></td>
         <td><%= link_to 'Destroy', tipo_evento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Tipo Evento', new_tipo_evento_path %>

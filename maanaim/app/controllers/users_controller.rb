@@ -6,6 +6,12 @@ class UsersController < OrdenavelController
   # GET /users/1.json
   def show
   end
+  
+  
+  def edit
+      @user = User.find(params[:id])
+      render 'edit.js'
+  end
 
 
   # POST /users
@@ -56,7 +62,7 @@ class UsersController < OrdenavelController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:email, :password, :password_confirmation, :pessoa_id)
     end
     
 end

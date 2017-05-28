@@ -1,4 +1,4 @@
-value =  "<%= escape_javascript (render 'templates/modal', titulo: 'Editar '+controller_name, form: (render 'form')) %>"
+value =  "<%= escape_javascript (render 'templates/modal', titulo: 'Editar '+controller_name.humanize, form: (render 'form')) %>"
 $("#modal-form").html(value);
 
 $('#myModal').modal('show')

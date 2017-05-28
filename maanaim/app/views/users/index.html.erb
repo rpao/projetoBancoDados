@@ -2,6 +2,7 @@
 <thead>
   <tr>
     <th>Email</th>
+    <th>Nome</th>
     <th colspan="2"></th>
   </tr>
 </thead>
@@ -10,6 +11,7 @@
   <% @users.each do |user| %>
     <tr>
       <td><%= user.email %></td>
+      <td><%= user.pessoa.nome %></td>
       <td><%= link_to 'Edit', edit_user_path(user), remote: true %></td>
       <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>

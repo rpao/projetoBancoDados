@@ -3,10 +3,10 @@ class CreateAccounts < ActiveRecord::Migration[5.0]
     create_table :accounts do |t|
       t.numeric :valor
       t.string :sitiacao
-      t.string :pessoa_id
+      t.belongs_to :pessoa,  foreign_key: true
 
       t.timestamps
     end
-    add_foreign_key :accounts, :pessoas, primary_key: 'cpf'
+    #add_foreign_key :accounts, :pessoas, primary_key: 'cpf'
   end
 end
