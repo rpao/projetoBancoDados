@@ -1,0 +1,4 @@
+value =  "<%= escape_javascript (render 'templates/modal', titulo: 'Editar equipe', form: (render 'form', equipe: @equipe )) %>"
+$("#modal-form").html(value);
+
+$('#myModal').modal('show')

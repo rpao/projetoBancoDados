@@ -2,7 +2,6 @@ class EventosController < ApplicationController
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   helper_method :sort_column, :sort_direction
-  
   # GET /eventos
   # GET /eventos.json
   def index
@@ -30,8 +29,8 @@ class EventosController < ApplicationController
 
     respond_to do |format|
       if @evento.save
-        format.html { redirect_to @evento, notice: 'Evento was successfully created.' }
-        format.json { render :show, status: :created, location: @evento }
+        format.html { redirect_to :eventos, notice: 'Evento was successfully created.' }
+        format.json { redirect_to :eventos, status: :created, location: @evento }
       else
         format.html { render :new }
         format.json { render json: @evento.errors, status: :unprocessable_entity }
@@ -44,8 +43,8 @@ class EventosController < ApplicationController
   def update
     respond_to do |format|
       if @evento.update(evento_params)
-        format.html { redirect_to @evento, notice: 'Evento was successfully updated.' }
-        format.json { render :show, status: :ok, location: @evento }
+        format.html { redirect_to :eventos, notice: 'Evento was successfully updated.' }
+        format.json { redirect_to :eventos, status: :ok, location: @evento }
       else
         format.html { render :edit }
         format.json { render json: @evento.errors, status: :unprocessable_entity }
