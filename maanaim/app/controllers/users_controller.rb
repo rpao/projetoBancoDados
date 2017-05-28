@@ -1,26 +1,12 @@
-class UsersController < ApplicationController
+class UsersController < OrdenavelController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  helper_method :sort_column, :sort_direction
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.order(sort_column + " " + sort_direction).search(params[:search]).paginate(:per_page => 5, :page => params[:page])
-  end
 
   # GET /users/1
   # GET /users/1.json
   def show
   end
 
-  # GET /users/new
-  def new
-    @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
-  end
 
   # POST /users
   # POST /users.json
@@ -73,11 +59,4 @@ class UsersController < ApplicationController
       params.require(:user).permit(:email, :password, :password_confirmation)
     end
     
-    def sort_column
-      User.column_names.include?(params[:sort]) ? params[:sort] : "1"
-    end
-    
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-    end
 end

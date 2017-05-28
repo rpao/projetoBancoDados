@@ -1,24 +1,12 @@
-class PedidosController < ApplicationController
+class PedidosController < OrdenavelController
   before_action :set_pedido, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   # GET /pedidos
   # GET /pedidos.json
-  def index
-    @pedidos = Pedido.all
-  end
 
   # GET /pedidos/1
   # GET /pedidos/1.json
   def show
-  end
-
-  # GET /pedidos/new
-  def new
-    @pedido = Pedido.new
-  end
-
-  # GET /pedidos/1/edit
-  def edit
   end
 
   # POST /pedidos

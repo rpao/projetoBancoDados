@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20170515023757) do
   end
 
   create_table "eventos", force: :cascade do |t|
+    t.string   "nome"
     t.integer  "quantidade_de_vagas"
     t.date     "data_de_inicio"
     t.date     "data_de_fim"

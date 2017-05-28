@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-md-5">
           <div class="col-md-12">
-            <%= form_tag eval(modelo+"s_path"), :method => 'get', class: 'form-inline' do %>
+            <%= form_tag eval(controller_name+"_path"), :method => 'get', class: 'form-inline' do %>
               <p>
                 <%= hidden_field_tag :direction, params[:direction] %>
                 <%= hidden_field_tag :sort, params[:sort] %>
@@ -19,7 +19,7 @@
             <% end %>
           </div>
         </div>
-        <div class="col-md-2 "><a href="<%= eval('new_'+modelo+'_path') %>" class="btn btn-primary" data-remote="true" >Novo Cadastro</a></div>
+        <div class="col-md-2 "><a href="<%= eval('new_'+controller_name.singularize+'_path') %>" class="btn btn-primary" data-remote="true" >Novo Cadastro</a></div>
         <div class="col-md-5 "><a href="#" class="btn btn-primary">Opções da Tabela</a></div>
       </div>
     </div>
@@ -28,7 +28,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12  ">
-      <%= tabela %>
+      <% if colecao %>
+      <%= render template: controller_name.singularize+'s/index' %>
+      <% end %>
     </div>
   </div>
   <div class="row">

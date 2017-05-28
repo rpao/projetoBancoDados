@@ -2,11 +2,9 @@ class Produto < ApplicationRecord
     
   def self.search(search)
     if search
-      #where('data_de_inicio LIKE ?', "%#{search}%")
-      where('true')
+      where('nome LIKE ?', "%#{search}%")
     else
-      #where('data_de_inicio LIKE ?', "%%")
-      where('true')
+      where('nome LIKE ?', "%%")
     end
   end
 end

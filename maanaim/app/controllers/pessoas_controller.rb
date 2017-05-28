@@ -1,25 +1,10 @@
-class PessoasController < ApplicationController
-  before_action :set_pessoa, only: [:show, :edit, :update, :destroy]
+class PessoasController < OrdenavelController
+  before_action :set_pessoa, only: [:show, :update, :destroy]
   before_action :authenticate_user!
-  helper_method :sort_column, :sort_direction
-  # GET /pessoas
-  # GET /pessoas.json
-  def index
-    @pessoas = Pessoa.order(sort_column + " " + sort_direction).search(params[:search]).paginate(:per_page => 5, :page => params[:page])
-  end
 
   # GET /pessoas/1
   # GET /pessoas/1.json
   def show
-  end
-
-  # GET /pessoas/new
-  def new
-    @pessoa = Pessoa.new
-  end
-
-  # GET /pessoas/1/edit
-  def edit
   end
 
   # POST /pessoas
@@ -73,11 +58,4 @@ class PessoasController < ApplicationController
       params.require(:pessoa).permit(:cpf, :nome, :sexo, :dtNasc, :logradouro, :cep, :bairro, :email, :telefone, :ativo)
     end
     
-    def sort_column
-      Pessoa.column_names.include?(params[:sort]) ? params[:sort] : "1"
-    end
-    
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-    end
 end

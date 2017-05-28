@@ -5,7 +5,7 @@
     <%= f.input :quantidade_de_vagas %>
     <%= f.input :data_de_inicio %>
     <%= f.input :data_de_fim %>
-    <%= f.association :tipo_evento %>
+    <%= f.association :tipo_evento, label_method: :nome %>
   </div>
 
   <div class="form-actions">
