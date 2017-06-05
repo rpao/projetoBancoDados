@@ -1,4 +1,4 @@
-class PedidosController < OrdenavelController
+class PedidosController < LancamentosController
   before_action :set_pedido, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   # GET /pedidos
@@ -8,20 +8,24 @@ class PedidosController < OrdenavelController
   # GET /pedidos/1.json
   def show
   end
+  
+  def edit
+    @produto_pedido = ProdutoPedido.new(pedido: @pedido)
+    @total = 0.0
+    @pedido.produto_pedidos.each { |pp| @total += pp.produto.preco*pp.quantidade }
+    render 'lancamentos/edit.js'
+  end
 
   # POST /pedidos
   # POST /pedidos.json
   def create
     @pedido = Pedido.new(pedido_params)
 
-    respond_to do |format|
-      if @pedido.save
-        format.html { redirect_to @pedido, notice: 'Pedido was successfully created.' }
-        format.json { render :show, status: :created, location: @pedido }
-      else
-        format.html { render :new }
-        format.json { render json: @pedido.errors, status: :unprocessable_entity }
-      end
+    if @pedido.save
+      @produto_pedido = ProdutoPedido.new(pedido: @pedido)
+      render 'create.js'
+    else
+      render :new 
     end
   end
 
@@ -57,6 +61,6 @@ class PedidosController < OrdenavelController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pedido_params
-      params.require(:pedido).permit(:obs, :user_id)
+      params.require(:pedido).permit(:obs, :pessoa_id)
     end
 end

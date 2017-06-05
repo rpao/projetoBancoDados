@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20170515023757) do
   create_table "produto_pedidos", force: :cascade do |t|
     t.integer  "pedido_id"
     t.integer  "produto_id"
+    t.integer  "quantidade"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pedido_id"], name: "index_produto_pedidos_on_pedido_id", using: :btree

@@ -1,0 +1,61 @@
+<% content_for :titulo do %>Lançamentos<% end %>
+
+<div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div class="btn-group"> <a href="#" class="btn btn-outline-primary active">Venda</a> <a href="#" class="btn btn-outline-primary">Pagamento</a> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="py-5">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="col-md-12">
+            <%= form_tag eval(controller_name+"_path"), :method => 'get', class: 'form-inline' do %>
+              <p>
+                <%= hidden_field_tag :direction, params[:direction] %>
+                <%= hidden_field_tag :sort, params[:sort] %>
+                <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Pesquisar'  %>
+                <%= submit_tag "Pesquisar", class: "btn btn-primary" %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-2 "><a href="<%= eval('new_'+controller_name.singularize+'_path') %>" class="btn btn-primary" data-remote="true" >Novo Item</a></div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12  ">
+      <% if colecao %>
+      <%= render template: controller_name.singularize+'s/index' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= will_paginate colecao, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer%>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="py-5">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <hr class=""> </div>
+    <div id="modal-form"></div>
+  </div>
+</div>
+</div>
+

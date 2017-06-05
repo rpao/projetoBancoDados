@@ -5,4 +5,9 @@ class PaginasController < ApplicationController
 
   def ajuda
   end
+  
+  def lista_eventos
+    @eventos = Evento.all
+  end
+  
 end

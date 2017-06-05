@@ -24,16 +24,16 @@ class ProdutoPedidosController < ApplicationController
   # POST /produto_pedidos
   # POST /produto_pedidos.json
   def create
-    @produto_pedido = ProdutoPedido.new(produto_pedido_params)
-
-    respond_to do |format|
-      if @produto_pedido.save
-        format.html { redirect_to @produto_pedido, notice: 'Produto pedido was successfully created.' }
-        format.json { render :show, status: :created, location: @produto_pedido }
-      else
-        format.html { render :new }
-        format.json { render json: @produto_pedido.errors, status: :unprocessable_entity }
-      end
+    produto_pedido = ProdutoPedido.new(produto_pedido_params)
+    if produto_pedido.save
+      
+      @pedido = produto_pedido.pedido
+      @produto_pedido = ProdutoPedido.new(pedido: @pedido)
+      @total = 0.0
+      @pedido.produto_pedidos.each { |pp| @total += pp.produto.preco*pp.quantidade }
+      render 'create.js'
+    else
+      render 'create.js'
     end
   end
 
@@ -69,6 +69,6 @@ class ProdutoPedidosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def produto_pedido_params
-      params.require(:produto_pedido).permit(:pedido_id, :produto_id)
+      params.require(:produto_pedido).permit(:pedido_id, :produto_id, :quantidade)
     end
 end

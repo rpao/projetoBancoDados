@@ -1,0 +1,38 @@
+<% content_for :titulo do %>Selecione o evento<% end %>
+
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Quantidade de vagas</th>
+                <th>Data de início</th>
+                <th>Data de fim</th>
+                <th>Tipo de evento</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <% @eventos.each do |evento| %>
+                <tr>
+                  <td><%= evento.nome %></td>
+                  <td><%= evento.quantidade_de_vagas %></td>
+                  <td><%= evento.data_de_inicio %></td>
+                  <td><%= evento.data_de_fim %></td>
+                  <td><%= evento.tipo_evento.nome %></td>
+                  <td><%= link_to 'Abrir caixa', pedidos_path %></td>
+                </tr>
+              <% end %>
+            </tbody>
+            </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+

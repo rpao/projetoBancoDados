@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get 'paginas/ajuda'
   
+  get 'paginas/lista_eventos'
+  
   root 'paginas#inicio'
   
   scope '/admin' do

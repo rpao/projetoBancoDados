@@ -1,0 +1,19 @@
+  <div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal" type="button">×</button>
+          <img class="img-fluid d-block w-50" src="<%= image_path "maanain-01.png"%>">
+          <div class="blockquote">
+            <p id="total">R$ --,--</p>
+            <div class="blockquote-footer">Valor Total</div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <%= render 'pedidos/form' %>
+          
+        </div>
+        <div class="modal-footer"></div>
+      </div>
+    </div>
+  </div>

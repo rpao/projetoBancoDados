@@ -1,12 +1,10 @@
-<%= simple_form_for(@produto_pedido) do |f| %>
+<%= simple_form_for(@produto_pedido, remote: true, html: {class: "form-inline"}) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.association :pedido %>
-    <%= f.association :produto %>
-  </div>
+    <%= f.association :pedido, :as => :hidden, value_method: :id%>
+    <%= f.input :quantidade,  wrapper_html: {class: "form-group w-25"}, input_html: {class: 'form-control w-50'} %>
+    <%= f.association :produto, label_method: :nome, wrapper_html: {class: "form-group w-50"}, input_html: {class: 'form-control w-75'} %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <%= f.submit 'Adicionar', class:"btn btn-primary w-25" %>
 <% end %>
+<%= render 'produto_pedidos/index' %>
