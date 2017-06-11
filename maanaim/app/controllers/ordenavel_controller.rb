@@ -1,5 +1,6 @@
 class OrdenavelController < ApplicationController
   helper_method :sort_column, :sort_direction
+  before_action :authenticate_user!
     
   def index
     objects = controller_name.classify.constantize.order(sort_column + " " + sort_direction).search(params[:search]).paginate(:per_page => 5, :page => params[:page])

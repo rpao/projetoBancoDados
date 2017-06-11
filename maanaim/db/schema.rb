@@ -53,37 +53,14 @@ ActiveRecord::Schema.define(version: 20170515023757) do
     t.index ["tipo_evento_id"], name: "index_eventos_on_tipo_evento_id", using: :btree
   end
 
-  create_table "fazer_pedidos", force: :cascade do |t|
-    t.integer  "evento_id"
-    t.integer  "pedido_id"
-    t.integer  "account_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_fazer_pedidos_on_account_id", using: :btree
-    t.index ["evento_id"], name: "index_fazer_pedidos_on_evento_id", using: :btree
-    t.index ["pedido_id"], name: "index_fazer_pedidos_on_pedido_id", using: :btree
-  end
-
-  create_table "formacao_eventos", force: :cascade do |t|
-    t.date     "data"
-    t.integer  "equipe_id"
-    t.integer  "evento_id"
-    t.integer  "pessoa_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["equipe_id"], name: "index_formacao_eventos_on_equipe_id", using: :btree
-    t.index ["evento_id"], name: "index_formacao_eventos_on_evento_id", using: :btree
-    t.index ["pessoa_id"], name: "index_formacao_eventos_on_pessoa_id", using: :btree
-  end
-
   create_table "pagamentos", force: :cascade do |t|
     t.date     "data"
     t.integer  "conta_evento_id"
-    t.decimal  "valor"
-    t.decimal  "desconto"
+    t.decimal  "valor",              default: "0.0"
+    t.decimal  "desconto",           default: "0.0"
     t.string   "forma_de_pagamento"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.index ["conta_evento_id"], name: "index_pagamentos_on_conta_evento_id", using: :btree
   end
 
@@ -99,7 +76,7 @@ ActiveRecord::Schema.define(version: 20170515023757) do
     t.string   "cpf"
     t.string   "nome"
     t.string   "sexo"
-    t.datetime "dtNasc"
+    t.date     "dtNasc"
     t.string   "logradouro"
     t.string   "cep"
     t.string   "bairro"
@@ -160,12 +137,6 @@ ActiveRecord::Schema.define(version: 20170515023757) do
   add_foreign_key "conta_eventos", "eventos"
   add_foreign_key "conta_eventos", "pessoas"
   add_foreign_key "eventos", "tipo_eventos"
-  add_foreign_key "fazer_pedidos", "accounts"
-  add_foreign_key "fazer_pedidos", "eventos"
-  add_foreign_key "fazer_pedidos", "pedidos"
-  add_foreign_key "formacao_eventos", "equipes"
-  add_foreign_key "formacao_eventos", "eventos"
-  add_foreign_key "formacao_eventos", "pessoas"
   add_foreign_key "pagamentos", "conta_eventos"
   add_foreign_key "pedidos", "conta_eventos"
   add_foreign_key "produto_pedidos", "pedidos"

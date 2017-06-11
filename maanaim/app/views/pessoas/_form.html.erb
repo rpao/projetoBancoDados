@@ -5,7 +5,7 @@
     <%= f.input :cpf %>
     <%= f.input :nome %>
     <%= f.input :sexo %>
-    <%= f.input :dtNasc %>
+    <%= f.input :dtNasc, as: :string, input_html: { type: 'date'} %>
     <%= f.input :logradouro %>
     <%= f.input :cep %>
     <%= f.input :bairro %>

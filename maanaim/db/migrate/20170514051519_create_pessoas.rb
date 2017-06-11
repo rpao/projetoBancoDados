@@ -4,7 +4,7 @@ class CreatePessoas < ActiveRecord::Migration[5.0]
       t.string :cpf, unique: true
       t.string :nome
       t.string :sexo
-      t.datetime :dtNasc
+      t.date :dtNasc
       t.string :logradouro
       t.string :cep
       t.string :bairro

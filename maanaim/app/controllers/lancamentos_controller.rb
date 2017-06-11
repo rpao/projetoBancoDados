@@ -1,6 +1,7 @@
 class LancamentosController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :set_evento, only: [:index, :destroy, :create, :new, :edit]
+  before_action :authenticate_user!
     
   def index
     objects = @evento.send(controller_name).order(sort_column + " " + sort_direction).search(params[:search]).paginate(:per_page => 5, :page => params[:page])

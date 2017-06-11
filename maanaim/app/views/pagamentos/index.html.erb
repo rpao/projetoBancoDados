@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th>Data</th>
-      <th>Account</th>
+      <th>Conta e saldo devedor</th>
       <th>Valor</th>
       <th>Desconto</th>
       <th>Forma de pagamento</th>
@@ -14,7 +14,7 @@
     <% @pagamentos.each do |pagamento| %>
       <tr>
         <td><%= pagamento.created_at %></td>
-        <td><%= pagamento.conta_evento.nome %></td>
+        <td><%= pagamento.conta_evento.label %></td>
         <td><%= pagamento.valor %></td>
         <td><%= pagamento.desconto %></td>
         <td><%= pagamento.forma_de_pagamento %></td>

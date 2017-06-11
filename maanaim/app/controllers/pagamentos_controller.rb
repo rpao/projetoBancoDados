@@ -13,30 +13,19 @@ class PagamentosController < LancamentosController
   # POST /pagamentos.json
   def create
     @pagamento = Pagamento.new(pagamento_params)
-
-    respond_to do |format|
-      if @pagamento.save
-        format.html { redirect_to @pagamento, notice: 'Pagamento was successfully created.' }
-        format.json { render :show, status: :created, location: @pagamento }
-      else
-        format.html { render :new }
-        format.json { render json: @pagamento.errors, status: :unprocessable_entity }
-      end
-    end
+    @pagamento.save
+    redirect_to pagamentos_path(evento: @pagamento.conta_evento.evento)
+   
   end
 
   # PATCH/PUT /pagamentos/1
   # PATCH/PUT /pagamentos/1.json
   def update
-    respond_to do |format|
-      if @pagamento.update(pagamento_params)
-        format.html { redirect_to @pagamento, notice: 'Pagamento was successfully updated.' }
-        format.json { render :show, status: :ok, location: @pagamento }
-      else
-        format.html { render :edit }
-        format.json { render json: @pagamento.errors, status: :unprocessable_entity }
-      end
-    end
+    
+    
+    @pagamento.update(pagamento_params)
+    redirect_to pagamentos_path(evento: @pagamento.conta_evento.evento)
+    
   end
 
   # DELETE /pagamentos/1
