@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :data %>
-    <%= f.association :account %>
+    <%= f.association :conta_evento, label_method: :label, collection: @evento.conta_eventos %>
     <%= f.input :valor %>
     <%= f.input :desconto %>
     <%= f.input :forma_de_pagamento %>

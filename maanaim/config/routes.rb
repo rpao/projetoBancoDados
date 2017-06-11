@@ -18,10 +18,8 @@ Rails.application.routes.draw do
   
   
   resources :produto_pedidos
-  resources :fazer_pedidos
   resources :accounts
   resources :produtos
-  resources :formacao_eventos
   resources :eventos
   resources :pessoas
   resources :tipo_eventos

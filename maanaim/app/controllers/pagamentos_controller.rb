@@ -7,9 +7,7 @@ class PagamentosController < LancamentosController
   def show
   end
 
-  # GET /pagamentos/1/edit
-  def edit
-  end
+
 
   # POST /pagamentos
   # POST /pagamentos.json
@@ -59,6 +57,6 @@ class PagamentosController < LancamentosController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pagamento_params
-      params.require(:pagamento).permit(:data, :account_id, :valor, :desconto, :forma_de_pagamento)
+      params.require(:pagamento).permit(:data, :conta_evento_id, :valor, :desconto, :forma_de_pagamento)
     end
 end

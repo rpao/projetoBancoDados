@@ -1,4 +1,4 @@
-value =  "<%= escape_javascript (render 'modal', titulo: 'Editar '+controller_name.humanize, form: (render 'form')) %>"
+value =  "<%= escape_javascript (render 'pedidos/modal', titulo: 'Editar '+controller_name.humanize, form: (render 'form')) %>"
 $("#modal-form").html(value);
 $("#total").html("<%= number_to_currency(@total, :separator => ",", :delimiter => ".", :unit => "R$") %>");
 $('#myModal').modal('show')
