@@ -24,7 +24,7 @@
                   <td><%= evento.data_de_inicio %></td>
                   <td><%= evento.data_de_fim %></td>
                   <td><%= evento.tipo_evento.nome %></td>
-                  <td><%= link_to 'Abrir caixa', pedidos_path %></td>
+                  <td><%= link_to 'Abrir caixa', pedidos_path(evento: evento) %></td>
                 </tr>
               <% end %>
             </tbody>

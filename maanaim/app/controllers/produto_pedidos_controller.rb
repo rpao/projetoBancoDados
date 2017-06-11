@@ -54,11 +54,12 @@ class ProdutoPedidosController < ApplicationController
   # DELETE /produto_pedidos/1
   # DELETE /produto_pedidos/1.json
   def destroy
+    @pedido = @produto_pedido.pedido
     @produto_pedido.destroy
-    respond_to do |format|
-      format.html { redirect_to produto_pedidos_url, notice: 'Produto pedido was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @produto_pedido = ProdutoPedido.new(pedido: @pedido)
+    @total = 0.0
+    @pedido.produto_pedidos.each { |pp| @total += pp.produto.preco*pp.quantidade }
+    render 'destroy.js'
   end
 
   private

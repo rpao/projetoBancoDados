@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20170515023757) do
     t.index ["pessoa_id"], name: "index_accounts_on_pessoa_id", using: :btree
   end
 
+  create_table "conta_eventos", force: :cascade do |t|
+    t.integer  "pessoa_id"
+    t.integer  "evento_id"
+    t.boolean  "em_aberto"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["evento_id"], name: "index_conta_eventos_on_evento_id", using: :btree
+    t.index ["pessoa_id"], name: "index_conta_eventos_on_pessoa_id", using: :btree
+  end
+
   create_table "equipes", force: :cascade do |t|
     t.string   "nome"
     t.string   "tipo"
@@ -68,21 +78,21 @@ ActiveRecord::Schema.define(version: 20170515023757) do
 
   create_table "pagamentos", force: :cascade do |t|
     t.date     "data"
-    t.integer  "account_id"
+    t.integer  "conta_evento_id"
     t.decimal  "valor"
     t.decimal  "desconto"
     t.string   "forma_de_pagamento"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.index ["account_id"], name: "index_pagamentos_on_account_id", using: :btree
+    t.index ["conta_evento_id"], name: "index_pagamentos_on_conta_evento_id", using: :btree
   end
 
   create_table "pedidos", force: :cascade do |t|
     t.string   "obs"
-    t.integer  "pessoa_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["pessoa_id"], name: "index_pedidos_on_pessoa_id", using: :btree
+    t.integer  "conta_evento_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["conta_evento_id"], name: "index_pedidos_on_conta_evento_id", using: :btree
   end
 
   create_table "pessoas", force: :cascade do |t|
@@ -103,9 +113,9 @@ ActiveRecord::Schema.define(version: 20170515023757) do
   create_table "produto_pedidos", force: :cascade do |t|
     t.integer  "pedido_id"
     t.integer  "produto_id"
-    t.integer  "quantidade"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "quantidade", default: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["pedido_id"], name: "index_produto_pedidos_on_pedido_id", using: :btree
     t.index ["produto_id"], name: "index_produto_pedidos_on_produto_id", using: :btree
   end
@@ -147,6 +157,8 @@ ActiveRecord::Schema.define(version: 20170515023757) do
   end
 
   add_foreign_key "accounts", "pessoas"
+  add_foreign_key "conta_eventos", "eventos"
+  add_foreign_key "conta_eventos", "pessoas"
   add_foreign_key "eventos", "tipo_eventos"
   add_foreign_key "fazer_pedidos", "accounts"
   add_foreign_key "fazer_pedidos", "eventos"
@@ -154,8 +166,8 @@ ActiveRecord::Schema.define(version: 20170515023757) do
   add_foreign_key "formacao_eventos", "equipes"
   add_foreign_key "formacao_eventos", "eventos"
   add_foreign_key "formacao_eventos", "pessoas"
-  add_foreign_key "pagamentos", "accounts"
-  add_foreign_key "pedidos", "pessoas"
+  add_foreign_key "pagamentos", "conta_eventos"
+  add_foreign_key "pedidos", "conta_eventos"
   add_foreign_key "produto_pedidos", "pedidos"
   add_foreign_key "produto_pedidos", "produtos"
   add_foreign_key "users", "pessoas"

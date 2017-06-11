@@ -1,8 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Pagamentos</h1>
-
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Data</th>
@@ -17,7 +13,7 @@
   <tbody>
     <% @pagamentos.each do |pagamento| %>
       <tr>
-        <td><%= pagamento.data %></td>
+        <td><%= pagamento.created_at %></td>
         <td><%= pagamento.account %></td>
         <td><%= pagamento.valor %></td>
         <td><%= pagamento.desconto %></td>
@@ -29,7 +25,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Pagamento', new_pagamento_path %>

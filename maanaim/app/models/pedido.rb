@@ -1,7 +1,13 @@
 class Pedido < ApplicationRecord
-  belongs_to :pessoa
-  has_many :produto_pedidos
-  has_many :pedidos, through: :produto_pedidos
+  
+  belongs_to :conta_evento
+  has_many :produto_pedidos, dependent: :destroy
+  
+  def total
+    soma = 0.0
+    self.produto_pedidos.each { |pp| soma += pp.produto.preco*pp.quantidade }
+    return soma
+  end
   
   def self.search(search)
     if search

@@ -1,9 +1,7 @@
 class PedidosController < LancamentosController
   before_action :set_pedido, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  # GET /pedidos
-  # GET /pedidos.json
-
+  
   # GET /pedidos/1
   # GET /pedidos/1.json
   def show
@@ -11,8 +9,8 @@ class PedidosController < LancamentosController
   
   def edit
     @produto_pedido = ProdutoPedido.new(pedido: @pedido)
-    @total = 0.0
-    @pedido.produto_pedidos.each { |pp| @total += pp.produto.preco*pp.quantidade }
+    @total = @pedido.total
+    
     render 'lancamentos/edit.js'
   end
 
@@ -48,7 +46,7 @@ class PedidosController < LancamentosController
   def destroy
     @pedido.destroy
     respond_to do |format|
-      format.html { redirect_to pedidos_url, notice: 'Pedido was successfully destroyed.' }
+      format.html { redirect_to pedidos_url(evento: @evento), notice: 'Pedido was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -61,6 +59,7 @@ class PedidosController < LancamentosController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pedido_params
-      params.require(:pedido).permit(:obs, :pessoa_id)
+      params.require(:pedido).permit(:obs, :conta_evento_id)
     end
+    
 end

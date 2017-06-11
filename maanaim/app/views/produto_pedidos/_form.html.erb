@@ -3,7 +3,7 @@
 
     <%= f.association :pedido, :as => :hidden, value_method: :id%>
     <%= f.input :quantidade,  wrapper_html: {class: "form-group w-25"}, input_html: {class: 'form-control w-50'} %>
-    <%= f.association :produto, label_method: :nome, wrapper_html: {class: "form-group w-50"}, input_html: {class: 'form-control w-75'} %>
+    <%= f.association :produto,collection: Produto.where(ativo: true).order(:nome), label_method: :nome, wrapper_html: {class: "form-group w-50"}, input_html: {class: 'form-control w-75'} %>
 
     <%= f.submit 'Adicionar', class:"btn btn-primary w-25" %>
 <% end %>

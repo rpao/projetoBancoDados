@@ -3,7 +3,7 @@
     <tr>
       <th>Obs</th>
       <th>Cliente</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -11,10 +11,9 @@
     <% @pedidos.each do |pedido| %>
       <tr>
         <td><%= pedido.obs %></td>
-        <td><%= pedido.pessoa.nome %></td>
-        <td><%= link_to 'Show', pedido %></td>
-        <td><%= link_to 'Edit', edit_pedido_path(pedido), remote: true %></td>
-        <td><%= link_to 'Destroy', pedido, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= pedido.conta_evento.nome %></td>
+        <td><%= link_to 'Edit', edit_pedido_path(evento: @evento,id: pedido), remote: true %></td>
+        <td><%= link_to 'Destroy', pedido_path(evento: @evento,id: pedido), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

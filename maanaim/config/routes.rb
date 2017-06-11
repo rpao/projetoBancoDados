@@ -10,11 +10,16 @@ Rails.application.routes.draw do
   scope '/admin' do
     resources :users
   end
-  resources :pagamentos
+  
+  scope "/:evento" do
+    resources :pagamentos
+    resources :pedidos
+  end
+  
+  
+  resources :produto_pedidos
   resources :fazer_pedidos
   resources :accounts
-  resources :pedidos
-  resources :produto_pedidos
   resources :produtos
   resources :formacao_eventos
   resources :eventos

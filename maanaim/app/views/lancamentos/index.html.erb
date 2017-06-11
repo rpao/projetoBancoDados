@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-          <div class="btn-group"> <a href="#" class="btn btn-outline-primary active">Venda</a> <a href="#" class="btn btn-outline-primary">Pagamento</a> </div>
+          <div class="btn-group"> <a href="<%= pedidos_path(evento: @evento) %>" class="btn btn-outline-primary <%= controller_name == "pedidos" ? "active" : "" %>">Venda</a> <a href="<%= pagamentos_path(evento: @evento) %>" class="btn btn-outline-primary <%= controller_name == "pagamentos" ? "active" : "" %>">Pagamento</a> </div>
         </div>
       </div>
     </div>
@@ -17,7 +17,7 @@
       <div class="row">
         <div class="col-md-5">
           <div class="col-md-12">
-            <%= form_tag eval(controller_name+"_path"), :method => 'get', class: 'form-inline' do %>
+            <%= form_tag eval((controller_name + '_path( evento: ' + @evento.id.to_s + ')')), :method => 'get', class: 'form-inline' do %>
               <p>
                 <%= hidden_field_tag :direction, params[:direction] %>
                 <%= hidden_field_tag :sort, params[:sort] %>
@@ -27,7 +27,7 @@
             <% end %>
           </div>
         </div>
-        <div class="col-md-2 "><a href="<%= eval('new_'+controller_name.singularize+'_path') %>" class="btn btn-primary" data-remote="true" >Novo Item</a></div>
+        <div class="col-md-2 "><a href="<%= eval('new_'+controller_name.singularize+'_path( evento: '+@evento.id.to_s+')') %>" class="btn btn-primary" data-remote="true" >Novo Item</a></div>
         
       </div>
     </div>

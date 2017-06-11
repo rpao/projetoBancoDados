@@ -16,7 +16,7 @@
         <td><%= produto_pedido.produto.nome %></td>
         <td><%= number_to_currency(produto_pedido.produto.preco, :separator => ",", :delimiter => ".", :unit => "R$") %></td>
         <td><%= number_to_currency(produto_pedido.produto.preco*produto_pedido.quantidade, :separator => ",", :delimiter => ".", :unit => "R$") %></td>
-        <td><%= link_to 'Remover', produto_pedido, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Remover', produto_pedido, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

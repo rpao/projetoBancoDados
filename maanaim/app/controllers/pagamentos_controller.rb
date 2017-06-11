@@ -1,20 +1,10 @@
-class PagamentosController < ApplicationController
+class PagamentosController < LancamentosController
   before_action :set_pagamento, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  # GET /pagamentos
-  # GET /pagamentos.json
-  def index
-    @pagamentos = Pagamento.all
-  end
-
+  
   # GET /pagamentos/1
   # GET /pagamentos/1.json
   def show
-  end
-
-  # GET /pagamentos/new
-  def new
-    @pagamento = Pagamento.new
   end
 
   # GET /pagamentos/1/edit
