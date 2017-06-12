@@ -16,14 +16,14 @@ Rails.application.routes.draw do
     resources :pedidos
   end
   
+  get '/eventos/:id/relatorio', to: 'eventos#relatorio', as: 'relatorio_evento'
+  
   
   resources :produto_pedidos
-  resources :accounts
   resources :produtos
   resources :eventos
   resources :pessoas
   resources :tipo_eventos
-  resources :equipes
   devise_for :users, :skip => [:registrations] 
   as :user do
     get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'

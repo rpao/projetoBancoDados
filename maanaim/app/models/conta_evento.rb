@@ -12,6 +12,24 @@ class ContaEvento < ApplicationRecord
     self.pagamentos.each { |pp| pago += pp.total }
     soma - pago
   end  
+  
+  def pago 
+    pago = 0.0
+    self.pagamentos.each { |pp| pago += pp.valor }
+    pago
+  end
+  
+  def desconto
+    desc = 0.0
+    self.pagamentos.each { |pp| desc += pp.desconto }
+    desc
+  end
+  
+  def comprado
+    soma = 0.0
+    self.pedidos.each { |pp| soma += pp.total }
+    soma
+  end
     
   def nome
     self.pessoa.nome

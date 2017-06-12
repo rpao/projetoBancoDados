@@ -1,0 +1,74 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://pingendo.github.io/templates/blank/theme.css" type="text/css"> </head>
+
+<body>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img class="img-fluid d-block" src="<%= image_path 'maanain-01' %>"> </div>
+        <div class="col-md-6 align-self-center">
+          <h1 class="">Relatório de evento Maanaim
+            <br>Evento: <%= @evento.nome %></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="blockquote">
+            <p>Resumo</p>
+            <ul class="list-group">
+              <li class="list-group-item">Total de vendas: &nbsp;<%= number_to_currency(@evento.total_vendas, :separator => ",", :delimiter => ".", :unit => "R$") %></li>
+              <li class="list-group-item">Total recebido: &nbsp;<%= number_to_currency(@evento.total_recebido, :separator => ",", :delimiter => ".", :unit => "R$") %></li>
+              <li class="list-group-item">Total de descontos: &nbsp;<%= number_to_currency(@evento.total_descontos, :separator => ",", :delimiter => ".", :unit => "R$") %></li>
+              <li class="list-group-item">Total pendente: &nbsp;<%= number_to_currency(@evento.total_pendente, :separator => ",", :delimiter => ".", :unit => "R$") %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="blockquote">
+            <p>Vendas por pessoa</p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Valor comprado</th>
+                  <th>Valor pago</th>
+                  <th>Descontos</th>
+                  <th>Saldo devedor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @evento.conta_eventos.each do |conta| %>
+                <tr>
+                  <td><%= conta.nome %></td>
+                  <td><%= number_to_currency(conta.comprado, :separator => ",", :delimiter => ".", :unit => "R$") %></td>
+                  <td><%= number_to_currency(conta.pago, :separator => ",", :delimiter => ".", :unit => "R$") %></td>
+                  <td><%= number_to_currency(conta.desconto, :separator => ",", :delimiter => ".", :unit => "R$") %></td>
+                  <td><%= number_to_currency(conta.saldo, :separator => ",", :delimiter => ".", :unit => "R$") %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

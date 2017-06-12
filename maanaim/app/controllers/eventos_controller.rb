@@ -1,10 +1,15 @@
 class EventosController < OrdenavelController
-  before_action :set_evento, only: [:show, :edit, :update, :destroy]
+  before_action :set_evento, only: [:show, :edit, :update, :destroy, :relatorio]
   before_action :authenticate_user!
 
   # GET /eventos/1
   # GET /eventos/1.json
   def show
+  end
+  
+  def relatorio
+    @evento.gerar_relatorio
+    render layout: false
   end
 
 
